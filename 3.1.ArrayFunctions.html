@@ -1,0 +1,65 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	function newArr(n) { // Функция, которая принимает в качестве параметра число n. Результатом работы функции является массив из N элементов со значениями 1, 2, 3… n.
+		var arr = [];
+		for (var i = 1; i <= n; i++) {
+			arr.push(i)
+		}
+		return arr;
+	}
+
+	function randArr(n) { // Функция, которая возвращает массив из n случайных чисел от 0 до 100
+		var arr = [];
+		for (var i = 1; i <= n; i++) {
+			arr.push(parseInt(Math.random()*101));
+		}
+		return arr;
+	}
+
+	function sumArr(array) { // Функция, которая принимает массив чисел. Результатом работы функции является сумма чисел этого массива.
+		var sum = 0;
+		for (var i = 0; i < array.length; i++) {
+			sum = sum + array[i];
+		}
+		return sum;
+	}
+
+	function maxInArr(array) { // Функция, которая на вход получает массив целых чисел, и в качестве результата возвращает максимальное число.
+		var max = array[0];
+		for (var i = 1; i < array.length; i++) {
+			if (array[i] > max) max = array[i];
+		}
+		return max;
+	}
+
+	function minInArr(array) { //  Функция, которая на вход получает массив целых чисел, и в качестве результата возвращает минимальное число.
+		var min = array[0];
+		for (var i = 1; i < array.length; i++) {
+			if (array[i] < min) min = array[i];
+		}
+		return min;
+	}
+
+	function evenNumArr(array) { // Функция, которая на вход получает массив целых чисел, и в качестве результата возвращает только четные числа из этого массива.
+		var arr = [];
+		for (var i = 0; i < array.length; i++) {
+			if (array[i] % 2 == 0) arr.push(array[i]);
+		}
+		return arr;
+	}
+
+	document.write ('Результат работы функции по заданию 1a (N =12): <br>' + newArr(12) + '<br><br>');
+
+	var myArr1 = randArr(12);
+	document.write ('Результат работы функции по заданию 1b (в качестве исходного массива взят массив массив из 12 элементов, заполненый случайными элементами от 0 до 100): <br> Массив: ' + myArr1 + '<br> Сумма: ' + sumArr(myArr1) + '<br><br>');
+
+	myArr1 = randArr(15);
+	document.write ('Результат работы функции по заданию 1c (в качестве исходного массива взят массив массив из 15 элементов, заполненый случайными элементами от 0 до 100): <br> Массив: ' + myArr1 + '<br> Максимальное число: ' + maxInArr(myArr1) + '<br><br>');
+
+	myArr1 = randArr(15);
+	document.write ('Результат работы функции по заданию 1d (в качестве исходного массива взят массив массив из 15 элементов, заполненый случайными элементами от 0 до 100): <br> Массив: ' + myArr1 + '<br> Минимальное число: ' + minInArr(myArr1) + '<br><br>');
+
+	myArr1 = randArr(20);
+	document.write ('Результат работы функции по заданию 1f (в качестве исходного массива взят массив массив из 20 элементов, заполненый случайными элементами от 0 до 100): <br> Массив: ' + myArr1 + '<br> Новый массив из четных элементов: ' + evenNumArr(myArr1) + '<br><br>');
+
+</script>

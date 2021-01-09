@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	function getRandomInt(min,max) {
+		return Math.floor(Math.random() * (max - min + 1) + min);
+	}
+
+	function getCard() {
+		var cards = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+		return cards[getRandomInt(0, cards.length - 1)];
+	}
+
+	function getSum(hand) {
+		var sum = 0;
+		var numCardsA = 0;
+		for (var i = 0; i < hand.length; i++) {
+			if (parseInt(hand[i]) > 0) {
+				sum = sum + parseInt(hand[i]);
+			} else if (hand[i] == 'A') {
+				sum = sum + 11;
+				numCardsA++;
+			} else {
+				sum = sum + 10;
+			}
+		}
+		while (numCardsA > 0) {
+			if (sum > 21) sum = sum - 10;
+			numCardsA--;
+		}
+		return sum;
+	}
+
+	function getStatus() {
+		return 'Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' ') + '\n Сумма дилера: ' + getSum(dealer) + ' Сумма игрока: ' + getSum(player);
+	}
+
+	var dealer = [getCard()];
+	var player = [getCard(), getCard()];
+
+	if (getSum(player) == 21) {
+		alert('Огромное везение БлэкДжек на раздаче! Игра окончена.\n' + getStatus());
+	} else {
+		do {
+			var answer = '';
+			answer = prompt(getStatus() + '\n Хотите еще карту? 1 - да, иначе - нет');
+			if (answer == '1') {
+				player.push(getCard());
+				if (getSum(player) == 21) {
+					alert('БлэкДжек! Игра окончена.\n' + getStatus());
+					break;
+				} else if (getSum(player) > 21) {
+					alert('Перебор! Игра окончена.\n' + getStatus());
+					break;
+				}
+			} else {
+				while (getSum(dealer) < 17) {
+					dealer.push(getCard());
+				}
+				var sumDealer = getSum(dealer);
+				var sumPlayer = getSum(player);
+				if (sumDealer == 21) {
+					alert('У дилера БлэкДжек! Игра окончена.\n' + getStatus());
+				} else if (sumDealer > 21) {
+					alert('У дилера перебор! Игра окончена.\n' + getStatus());
+				} else if (sumDealer == sumPlayer) {
+					alert('Ничья! Игра окончена.\n' + getStatus());
+				} else if (sumDealer < sumPlayer) {
+					alert('Выигрыш! Игра окончена.\n' + getStatus());
+				} else if (sumDealer > sumPlayer) {
+					alert('Проигрыш! Игра окончена.\n' + getStatus());
+				}
+			}
+		} while (answer == '1');
+	}
+</script>

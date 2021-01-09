@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	var answer = parseInt(Math.random() * 100); // Компьютер выбирает число от 0 до 100
+//	var userAnswer = ""; 
+	var player1 = true; // Переменная выбора игрока
+	alert ("  Угадайте число от 0 до 100\n\nОписание: Игра для двух игроков. Пробуйте по \nочереди угадать какое число загадал компьютер. \nДля выхода ввести любую букву."); // Вывод описания игры
+//	var nameNow = "";
+	var namePlayer1 = prompt("Введите имя игрока 1:"); // Ввод имени первого игрока
+	var namePlayer2 = prompt("Введите имя игрока 2:"); // Ввод имени второго игрока
+	while (true) { // Бесконечный цикл
+		if (player1) { // Определение игрока
+			nameNow = namePlayer1; 
+		} else {
+			nameNow = namePlayer2;
+		}
+		player1 = !player1; // Переключение игрока для следующего цикла
+		userAnswer = +prompt("Игрок " + nameNow + "\nВведите число от 0 до 100.\nДля выхода введите любую букву."); // Диалог ввода числа
+		if (isNaN(userAnswer)) break; // Если введена буква, то выход из игры
+		else if (userAnswer == answer) { 
+			alert ("Победа!!! Игрок " + nameNow + " угадал число!");
+			break;
+		} else if (userAnswer > answer) {
+			alert ("Вы ввели слишком большое число.");
+		} else if (userAnswer < answer) {
+			alert ("Вы ввели слишком маленькое число.");
+		}
+	}
+	alert ("Игра окончена!");
+</script>
