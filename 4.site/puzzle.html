@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var score = 0;
+
+		function checkAnswer(inputId, answers){
+			var userAnswer = document.getElementById(inputId).value;
+			userAnswer = userAnswer.toLowerCase();
+			for(var i = 0; i < answers.length; i++){
+				if(userAnswer == answers[i]){
+					score++;
+					break;
+				}
+			}
+		}
+		
+		function checkAnswers() {
+			score = 0;
+			checkAnswer("userAnswer1", ['морковь', 'морковка']);
+			checkAnswer("userAnswer2", ['гнездо', 'гнездышко']);
+			checkAnswer("userAnswer3", ['капуста']);
+			checkAnswer("userAnswer4", ['гриб', 'грибок', 'грибочек']);
+
+			alert("Загадок отгадано -  " + score);
+
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="#">Загадки</a>
+		<a href="guess.html">Угадайка</a>
+		<a href="guess-2.html">Угадайка(Мультиплеер)</a>
+		<a href="passgen.html">Генератор пароля</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра в загадки</h1>
+
+			<div class="box">
+
+				<p>Красна девица сидит в темнице, а коса на улице?</p>
+				<input type="text" id="userAnswer1">
+
+				<p>Без рук, без топорёнка построена избёнка?</p>
+				<input type="text" id="userAnswer2">
+
+				<p>Сто одёжек и все без застежёк?</p>
+				<input type="text" id="userAnswer3">
+
+				<p>Стоял на крепкой ножке, теперь лежит в лукошке?</p>
+				<input type="text" id="userAnswer4">
+
+				<br>
+				<a href="#" onClick="checkAnswers();">Ответить</a>
+
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; 2021 Viacheslav Khrykin
+<div>
+
+
+</body>
+</html>
