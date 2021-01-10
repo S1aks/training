@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 101); // Загадываем число
+		var init = true; // Бит определения первого нажатия на кнопку
+		var Player1 = "";
+		var Player2 = "";
+		var nameNow = "";
+		var checkPlayer1 = false; // Бит выбора первого игрока
+
+		function readInt(){ // Функция чтения ввода
+			var number = document.getElementById("userAnswer").value;
+			return parseInt(number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(id,text){ // Функция вывода сообщений
+			document.getElementById(id).innerHTML = text;
+		}
+
+		function hide(id){ // Спрятать элемент страницы
+			document.getElementById(id).style.display = "none";
+		}
+
+		function show(id){ // Показать элемент страницы
+			document.getElementById(id).style.display = "";
+		}
+
+		function togglePlayer() { // Функция смены игрока
+			checkPlayer1 = !checkPlayer1;
+			if (checkPlayer1) nameNow = Player1; else nameNow = Player2;
+		}
+		
+		function textOnKeyUp(event) { // Функция определения нажатия клавиши ENTER
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				document.getElementById("button").click(); 
+			}
+		}
+
+		function guess(){ // Процедура обработки данных
+			if (init) { // Если первое нажатие кнопки
+				Player1 = document.getElementById("Name1").value; // Чтение имён игроков
+				Player2 = document.getElementById("Name2").value; //
+				if ((Player1 == '') || (Player2 == '')) {  //Если какое либо поле пустое то вывод предупреждения
+					write("info", "Обязательно введите оба имени!"); //
+				} else {
+					write("description", "Поочередно вводите числа (можно использовать ENTER для ввода).<br>Выигрывает тот кто угадает загаданное число от 0 до 100.");  // Вывод описания игры
+					hide("Name1"); // Спрятать строки ввода имён
+					hide("Name2"); //
+					write("text1", "Игрок1: " + Player1); // Вывод на страницу списка играющих
+					write("text2", "Игрок2: " + Player2); //
+					togglePlayer(); // Выбор игрока 1
+					write("info", "Игрок " + nameNow + " введите число:");
+					show("userAnswer"); // Показать строку ввода чисел
+					document.getElementById("userAnswer").focus(); // Фокус на неё
+					init = false; // Выключение бита первого нажатия
+				}
+			} else {
+				var userAnswer = readInt(); // Чтение числа из поля ввода
+				if (userAnswer == answer) { // Если совпадение, то 
+					write("info", nameNow + " поздравляю, вы угадали!"); // Вывод поздравления
+					hide("button"); // Спрятать кнопку чтобы не было продолжения игры
+					hide("userAnswer"); // Спрятать строку ввода
+				} else if (userAnswer > answer) { //Если число больше, то переключение игрока и вывод сообщения что введено большое число
+					togglePlayer();
+					write("info", "Вы ввели слишком большое число<br>Игрок " + nameNow + " введите число:");
+				} else if (userAnswer < answer) { //Если число меньше, то переключение игрока и вывод сообщения что введено маленькое число
+					togglePlayer();
+					write("info", "Вы ввели слишком маленькое число<br>Игрок " + nameNow + " введите число:");
+				}
+				document.getElementById("userAnswer").value = ""; // Стереть поле ввода
+				document.getElementById("userAnswer").focus(); // Фокус на поле ввода
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="guess.html">Угадайка</a>
+		<a href="#">Угадайка(Мультиплеер)</a>
+		<a href="passgen.html">Генератор пароля</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка</h1>
+
+			<div class="box">
+				<p><span id="description">Игра на двоих. Введите свои имена:</span>
+				<br><br>
+				<span id="text1">Игрок1: </span><input type="text" id="Name1">
+				<br>
+				<span id="text2">Игрок2: </span><input type="text" id="Name2"></p>
+				<p id="info">И нажмите кнопку 'Начать'</p>
+				<input type="text" id="userAnswer" onkeyup="textOnKeyUp(event)" style="display: none">
+				<br>
+				<a href="#" onClick="guess();" id="button">Начать</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; 2021 Viacheslav Khrykin
+<div>
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		function write(text){
+			document.getElementById("passText").innerHTML = text;
+		}
+
+		function getPass(n) {
+			var passChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678";
+			var passStr = "";
+			for (var i = 0; i < n; i++) {
+				passStr += passChars[parseInt(Math.random()*passChars.length)];
+			}
+			return passStr;
+		}
+
+		function passGen(){
+			var passLength = +document.getElementById("textPassLength").value;
+			if(passLength > 0){
+				write("Пароль: " + getPass(passLength));
+			} else {
+				write("Неверный ввод!");
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="#">Угадайка</a>
+		<a href="guess-2.html">Угадайка(Мультиплеер)</a>
+		<a href="passgen.html">Генератор пароля</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Генератор пароля</h1>
+
+			<div class="box">
+
+				<p id="info">Введите длину пароля</p>
+				<input type="text" id="textPassLength">
+				<p id="passText">Пароль: </p>
+				<br>
+				<a href="#" onClick="passGen();" id="button">Сгенерировать</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; 2021 Viacheslav Khrykin
+<div>
+
+
+</body>
+</html>
